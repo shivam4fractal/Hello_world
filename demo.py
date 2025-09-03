@@ -3,7 +3,6 @@ This module demonstrates basic Python print statements.
 It prints "Hello from RDP" and "Inside Github IDE",
 calculates the area of a circle.
 """
-
 import sys
 
 # Demo Code
@@ -25,7 +24,7 @@ def main(r):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        radius = float(sys.argv[1])
+        RADIUS = float(sys.argv[1])
     else:
-        radius = 10
-    main(radius)
+        RADIUS = 10
+    main(RADIUS)

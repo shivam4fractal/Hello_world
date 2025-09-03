@@ -3,9 +3,6 @@ import unittest
 from demo import calculate_area_circle
 
 
-"""Test case class for the demo module."""
-
-
 class TestDemo(unittest.TestCase):
     """Test case class for the demo module."""
 
