@@ -1,19 +1,24 @@
 import unittest
 from demo import calculate_area_circle
 
+"""Unit test cases for the demo module."""
+
+
 class TestDemo(unittest.TestCase):
+    """Test case class for the demo module."""
 
-    def test_calculate_area_of_circle_1(self):
-        # Test the area calculation with a radius of 10
-        self.assertEqual(calculate_area_circle(10), 314.0)
-        # Test the area calculation with a radius of 0
-    def test_calculate_area_of_circle_2(self):
+    def test_calculate_area_circle(self):
+        """Test the calculate_area_circle function."""
+        self.assertEqual(calculate_area_circle(5), 3.14 * 5 * 5)
 
-        self.assertEqual(calculate_area_circle(0), 0.0)
-    def test_calculate_area_of_circle_3(self):
-        
-        # Test the area calculation with a negative radius
-        self.assertEqual(calculate_area_circle(-5), 78.5)
+    def test_calculate_area_circle_zero(self):
+        """Test the calculate_area_circle function with zero radius."""
+        self.assertEqual(calculate_area_circle(0), 0)
+
+    def test_calculate_area_circle_one(self):
+        """Test the calculate_area_circle function with radius one."""
+        self.assertEqual(calculate_area_circle(1), 3.14)
+
 
 if __name__ == '__main__':
     unittest.main()

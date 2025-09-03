@@ -4,6 +4,8 @@ import pytest
 from unittest.mock import patch
 from demo import calculate_area_circle, main
 
+"""Unit tests for the demo module."""
+
 def test_calculate_area_circle():
     """Test the calculate_area_circle function with various inputs."""
     # Test with radius = 0
@@ -15,8 +17,12 @@ def test_calculate_area_circle():
     # Test with radius = 2
     assert pytest.approx(calculate_area_circle(2)) == 12.56
     
-    # Test with negative radius (though this might not be physically meaningful)
-    assert pytest.approx(calculate_area_circle(-1)) == 3.14
+    # Test with radius = 5
+    assert calculate_area_circle(5) == 3.14 * 5 * 5
+
+def test_calculate_area_circle_negative():
+    """Test the calculate_area_circle function with a negative radius."""
+    assert calculate_area_circle(-5) == 3.14 * 25
 
 def test_main_function():
     """Test the main function's output."""
