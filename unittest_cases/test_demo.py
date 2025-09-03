@@ -1,7 +1,9 @@
+"""Unit test cases for the demo module."""
 import unittest
 from demo import calculate_area_circle
 
-"""Unit test cases for the demo module."""
+
+"""Test case class for the demo module."""
 
 
 class TestDemo(unittest.TestCase):

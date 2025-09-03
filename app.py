@@ -1,5 +1,11 @@
+"""A simple Streamlit app."""
+
 import streamlit as st
 from demo import calculate_area_circle
+
+st.title("My Streamlit App")
+
+st.write("Hello, world!")
 
 st.header("Hello, Streamlit!")
 st.write("This is a simple Calculator application.")
