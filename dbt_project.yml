@@ -1,0 +1,58 @@
+name: 'sales_platform_analytics'
+version: '1.0.0'
+config-version: 2
+profile: 'sales_platform'
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+
+models:
+  sales_platform_analytics:
+    +materialized: view
+    +persist_docs:
+      relation: true
+      columns: true
+    
+    staging:
+      +materialized: view
+      +tags: ["staging"]
+      sales_platform:
+        +schema: staging
+    
+    intermediate:
+      +materialized: ephemeral
+      +tags: ["intermediate"]
+    
+    marts:
+      +materialized: table
+      +tags: ["marts"]
+      core:
+        +schema: core
+      analytics:
+        +schema: analytics
+seeds:
+  +schema: seeds
+  +quote_columns: false
+tests:
+  +store_failures: true
+  +schema: test_results
+vars:
+  # Date range for incremental models
+  start_date: '2020-01-01'
+  
+  # Business logic variables
+  high_value_threshold: 1000
+  medium_value_threshold: 500
+  
+
+
+  # Payment methods
+  valid_payment_methods: ['credit_card', 'debit_card', 'paypal', 'bank_transfer', 'cash']
