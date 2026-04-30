@@ -1,8 +1,9 @@
 with source as (
     select * from {{ source('sales_platform', 'customers') }}
-),
+)
 
 
+{#
 renamed as (
     select
         -- Primary Key
@@ -29,4 +30,4 @@ renamed as (
         
     from source
 )
-select * from renamed
+select * from renamed #}
