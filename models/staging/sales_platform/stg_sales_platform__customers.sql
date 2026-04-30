@@ -3,7 +3,7 @@ with source as (
 )
 
 
-{#
+
 renamed as (
     select
         -- Primary Key
@@ -30,4 +30,4 @@ renamed as (
         
     from source
 )
-select * from renamed #}
+select * from renamed 
