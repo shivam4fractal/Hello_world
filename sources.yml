@@ -30,3 +30,11 @@ sources:
         freshness:
           warn_after: {count: 12, period: hour}
           error_after: {count: 24, period: hour}
+
+        - name: sales_platform
+    database: mdlpoclanding_catalog
+    schema: sales_platform
+    tables:
+      - name: customers
+      - name: orders
+      - name: payments
