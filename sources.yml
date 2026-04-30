@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: sales_platform
-    database: mdlpoclanding_catalog
+    catalog: mdlpoclanding_catalog
     schema: sales_platform
     description: "Raw data from the sales platform system containing customer, order, and payment information"
 
