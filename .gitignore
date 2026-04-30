@@ -5,3 +5,4 @@ profiles.yml
 .env
 .venv/
 __pycache__/
+dbt_internal_packages/
