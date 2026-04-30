@@ -21,7 +21,7 @@ renamed as (
 
         processor,
         
-        -- Metadata
+        -- Table Metadata
         created_at,
         updated_at,
         _loaded_at
