@@ -1,0 +1,1 @@
+SELECT * FROM `mdlpoclanding_catalog`.`mdlzpoc`.`business_domain_tdd`
