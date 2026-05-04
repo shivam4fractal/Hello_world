@@ -1,0 +1,8 @@
+sources:
+  - name: meu_ds_lops
+    tables:
+      - name: base_inet_loads
+        columns:
+          - name: internal_order_id_nk
+          - name: internal_load_id_nk
+          - name: costid_nk

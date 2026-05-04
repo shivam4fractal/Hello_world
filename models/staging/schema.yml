@@ -1,0 +1,16 @@
+models:
+  - name: stg_meu_ds_lops__base_inet_loads
+    description: "Staging model for BASE_INET_LOADS_DATASET from meu_ds_lops"
+    columns:
+      - name: internal_order_id_nk
+        tests:
+          - not_null
+        description: "Field internal_order_id_nk of type int "
+      - name: internal_load_id_nk
+        tests:
+          - not_null
+        description: "Field internal_load_id_nk of type int "
+      - name: costid_nk
+        tests:
+          - not_null
+        description: "Field costid_nk of type int "
