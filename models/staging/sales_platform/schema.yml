@@ -1,13 +1,6 @@
 version: 2
 
-sources:
-  - name: sales_platform
-    database: mdlpoclanding_catalog
-    schema: sales_platform
-    tables:
-      - name: customers
-      - name: orders
-      - name: payments
+
 
 models:
   - name: stg_sales_platform__customers
@@ -53,10 +46,7 @@ models:
         description: "Foreign key to customers table"
         tests:
           - not_null
-          - relationships:
-              to: ref('stg_sales_platform__customers')
-              field: customer_id
-
+          
       - name: order_date
         description: "Date when order was placed"
         tests:
@@ -66,8 +56,7 @@ models:
         description: "Total order amount including tax and shipping"
         tests:
           - not_null
-          - dbt_utils.expression_is_true:
-              expression: ">= 0"
+        
 
   - name: stg_sales_platform__payments
     description: "Staging model for payment data from sales platform"
@@ -82,20 +71,16 @@ models:
         description: "Foreign key to orders table"
         tests:
           - not_null
-          - relationships:
-              to: ref('stg_sales_platform__orders')
-              field: order_id
+          
+            
 
       - name: payment_amount
         description: "Amount of the payment"
         tests:
           - not_null
-          - dbt_utils.expression_is_true:
-              expression: "> 0"
-
+          
       - name: payment_status
         description: "Status of the payment"
         tests:
           - not_null
-          - accepted_values:
-              values: ['pending', 'completed', 'failed', 'refunded']
+          

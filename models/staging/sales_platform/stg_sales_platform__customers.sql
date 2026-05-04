@@ -1,8 +1,6 @@
 with source as (
-    select * from {{ source('sales_platform', 'customers') }}
-)
-
-
+    select * from {{ source("sales_platform_src", "customers") }}
+),
 
 renamed as (
     select
