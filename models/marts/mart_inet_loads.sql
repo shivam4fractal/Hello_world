@@ -1,5 +1,5 @@
 with enriched as (
-  select * from {{ ref(int_inet_loads_enriched) }}
+  select * from {{ ref('int_inet_loads_enriched') }}
 )
 select
   enriched.internal_order_id_nk,

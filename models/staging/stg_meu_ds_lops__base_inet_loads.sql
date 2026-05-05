@@ -1,66 +1,45 @@
-with ordr as (
-  select * from {{ source(meu_ds_lops, v_fct_shipment_order) }}
-),
-ship_load as (
-  select * from {{ source(meu_ds_lops, v_fct_shipment_load) }}
-),
-ship_cost as (
-  select * from {{ source(meu_ds_lops, v_fct_shipment_cost) }}
-),
-odr_dt as (
-  select * from {{ source(meu_ds_lops, v_fct_shipment_orderdetail) }}
-),
-dim_vh as (
-  select * from {{ source(meu_ds_lops, v_dim_vehicle) }}
-),
-pick_up_del as (
-  select * from {{ source(meu_ds_lops, v_dim_pick_up_delivery) }}
-),
-dim_consignor as (
-  select * from {{ source(meu_ds_lops, v_dim_transportation_coordinator) }}
-),
-dim_receiver as (
-  select * from {{ source(meu_ds_lops, v_dim_transportation_coordinator) }}
+with source as (
+  select * from {{ source('meu_ds_lops', 'v_fct_shipment_order') }}
 )
 select
-  ordr.internal_order_id_nk as internal_order_id_nk,
-  ordr.internal_load_id_nk as internal_load_id_nk,
-  ordr.costid_nk as costid_nk,
-  ordr.internal_orderdetail_id_nk as internal_orderdetail_id_nk,
-  ordr.to_bonus_time as to_bonus_time,
-  ordr.to_order_number as to_order_number,
-  ordr.to_load_number as to_load_number,
-  ordr.ld_load_name as ld_load_name,
-  ordr.means_of_transport as means_of_transport,
-  ordr.to_special_order_type as to_special_order_type,
-  ordr.to_act_pickup_date as to_act_pickup_date,
-  ordr.co_total_costs as co_total_costs,
-  ordr.co_cost_type as co_cost_type,
-  ordr.to_weight_unit as to_weight_unit,
-  ordr.to_gross_weight as to_gross_weight,
-  ordr.packagetype as packagetype,
-  ordr.to_consigner_city as to_consigner_city,
-  ordr.to_consigner_country as to_consigner_country,
-  ordr.lane_name as lane_name,
-  ordr.route_distance as route_distance,
-  ordr.to_purchase_order_number as to_purchase_order_number,
-  ordr.to_consignor_id as to_consignor_id,
-  ordr.totalpalletsactual as totalpalletsactual,
-  ordr.totalpalletsplaned as totalpalletsplaned,
-  ordr.to_status as to_status,
-  ordr.to_floor_pallets_actuals as to_floor_pallets_actuals,
-  ordr.to_floor_pallets_planned as to_floor_pallets_planned,
-  ordr.pickup_status as pickup_status,
-  ordr.to_reference_number as to_reference_number,
-  ordr.to_delivery_note_number as to_delivery_note_number,
-  ordr.to_recipient_city as to_recipient_city,
-  ordr.to_recipient_country as to_recipient_country,
-  ordr.to_recipient_id as to_recipient_id,
-  ordr.to_recipient_name as to_recipient_name,
-  ordr.to_recipient_zipcode as to_recipient_zipcode,
-  ordr.to_remarks as to_remarks,
-  ordr.transport_start_date as transport_start_date,
-  ordr.to_consigner_name as to_consigner_name,
-  ordr.to_pallet_places as to_pallet_places,
-  ordr.ld_transport_end_date as ld_transport_end_date
-from ordr
+  cast(internal_order_id_nk as string) as internal_order_id_nk,
+  cast(internal_load_id_nk as string) as internal_load_id_nk,
+  cast(costid_nk as string) as costid_nk,
+  cast(internal_orderdetail_id_nk as string) as internal_orderdetail_id_nk,
+  cast(to_bonus_time as string) as to_bonus_time,
+  cast(to_order_number as string) as to_order_number,
+  cast(to_load_number as string) as to_load_number,
+  cast(ld_load_name as string) as ld_load_name,
+  cast(means_of_transport as string) as means_of_transport,
+  cast(to_special_order_type as string) as to_special_order_type,
+  cast(to_act_pickup_date as string) as to_act_pickup_date,
+  cast(co_total_costs as string) as co_total_costs,
+  cast(co_cost_type as string) as co_cost_type,
+  cast(to_weight_unit as string) as to_weight_unit,
+  cast(to_gross_weight as string) as to_gross_weight,
+  cast(packagetype as string) as packagetype,
+  cast(to_consigner_city as string) as to_consigner_city,
+  cast(to_consigner_country as string) as to_consigner_country,
+  cast(lane_name as string) as lane_name,
+  cast(route_distance as string) as route_distance,
+  cast(to_purchase_order_number as string) as to_purchase_order_number,
+  cast(to_consignor_id as string) as to_consignor_id,
+  cast(totalpalletsactual as string) as totalpalletsactual,
+  cast(totalpalletsplaned as string) as totalpalletsplaned,
+  cast(to_status as string) as to_status,
+  cast(to_floor_pallets_actuals as string) as to_floor_pallets_actuals,
+  cast(to_floor_pallets_planned as string) as to_floor_pallets_planned,
+  cast(pickup_status as string) as pickup_status,
+  cast(to_reference_number as string) as to_reference_number,
+  cast(to_delivery_note_number as string) as to_delivery_note_number,
+  cast(to_recipient_city as string) as to_recipient_city,
+  cast(to_recipient_country as string) as to_recipient_country,
+  cast(to_recipient_id as string) as to_recipient_id,
+  cast(to_recipient_name as string) as to_recipient_name,
+  cast(to_recipient_zipcode as string) as to_recipient_zipcode,
+  cast(to_remarks as string) as to_remarks,
+  cast(transport_start_date as string) as transport_start_date,
+  cast(to_consigner_name as string) as to_consigner_name,
+  cast(to_pallet_places as string) as to_pallet_places,
+  cast(ld_transport_end_date as string) as ld_transport_end_date
+from source
