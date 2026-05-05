@@ -1,8 +1,20 @@
+version: 2
 sources:
   - name: meu_ds_lops
+    database: RAW
+    schema: public
     tables:
-      - name: base_inet_loads
-        columns:
-          - name: internal_order_id_nk
-          - name: internal_load_id_nk
-          - name: costid_nk
+      - name: v_fct_shipment_order
+        description: Driving table (ordr)
+      - name: v_fct_shipment_load
+        description: Shipment load (ship_load)
+      - name: v_fct_shipment_cost
+        description: Shipment cost (ship_cost)
+      - name: v_fct_shipment_orderdetail
+        description: Order detail (odr_dt)
+      - name: v_dim_vehicle
+        description: Vehicle dimension (dim_vh)
+      - name: v_dim_pick_up_delivery
+        description: Pickup/delivery dimension (pick_up_del)
+      - name: v_dim_transportation_coordinator
+        description: Transportation coordinator (dim_consignor, dim_receiver)

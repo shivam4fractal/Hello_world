@@ -1,2 +1,45 @@
--- Mart model for harmonized BASE_INET_LOADS_DATASET
-select * from {{ ref("int_inet_loads_enriched") }}
+with enriched as (
+  select * from {{ ref('int_inet_loads_enriched') }}
+)
+select
+  CAST(enriched.internal_order_id_nk AS BIGINT) as internal_order_id_nk,
+  CAST(enriched.internal_load_id_nk AS BIGINT) as internal_load_id_nk,
+  CAST(enriched.costid_nk AS DECIMAL(18,2)) as costid_nk,
+  CAST(enriched.internal_orderdetail_id_nk AS BIGINT) as internal_orderdetail_id_nk,
+  enriched.to_bonus_time,
+  enriched.to_order_number,
+  enriched.to_load_number,
+  UPPER(TRIM(enriched.ld_load_name)) as ld_load_name,
+  enriched.means_of_transport,
+  enriched.to_special_order_type,
+  CAST(enriched.to_act_pickup_date AS DATE) as to_act_pickup_date,
+  CAST(enriched.co_total_costs AS DECIMAL(18,2)) as co_total_costs,
+  CAST(enriched.co_cost_type AS DECIMAL(18,2)) as co_cost_type,
+  CAST(enriched.to_weight_unit AS DECIMAL(18,4)) as to_weight_unit,
+  CAST(enriched.to_gross_weight AS DECIMAL(18,4)) as to_gross_weight,
+  enriched.packagetype,
+  UPPER(TRIM(enriched.to_consigner_city)) as to_consigner_city,
+  UPPER(TRIM(enriched.to_consigner_country)) as to_consigner_country,
+  UPPER(TRIM(enriched.lane_name)) as lane_name,
+  CAST(enriched.route_distance AS DECIMAL(18,4)) as route_distance,
+  enriched.to_purchase_order_number,
+  CAST(enriched.to_consignor_id AS BIGINT) as to_consignor_id,
+  enriched.totalpalletsactual,
+  enriched.totalpalletsplaned,
+  UPPER(enriched.to_status) as to_status,
+  enriched.to_floor_pallets_actuals,
+  enriched.to_floor_pallets_planned,
+  UPPER(enriched.pickup_status) as pickup_status,
+  enriched.to_reference_number,
+  enriched.to_delivery_note_number,
+  UPPER(TRIM(enriched.to_recipient_city)) as to_recipient_city,
+  UPPER(TRIM(enriched.to_recipient_country)) as to_recipient_country,
+  CAST(enriched.to_recipient_id AS BIGINT) as to_recipient_id,
+  UPPER(TRIM(enriched.to_recipient_name)) as to_recipient_name,
+  enriched.to_recipient_zipcode,
+  enriched.to_remarks,
+  CAST(enriched.transport_start_date AS DATE) as transport_start_date,
+  UPPER(TRIM(enriched.to_consigner_name)) as to_consigner_name,
+  enriched.to_pallet_places,
+  CAST(enriched.ld_transport_end_date AS DATE) as ld_transport_end_date
+from enriched

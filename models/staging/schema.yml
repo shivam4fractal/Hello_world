@@ -1,16 +1,125 @@
+version: 2
 models:
   - name: stg_meu_ds_lops__base_inet_loads
-    description: "Staging model for BASE_INET_LOADS_DATASET from meu_ds_lops"
+    description: Staging model for BASE_INET_LOADS_DATASET
     columns:
       - name: internal_order_id_nk
         tests:
           - not_null
-        description: "Field internal_order_id_nk of type int "
       - name: internal_load_id_nk
         tests:
           - not_null
-        description: "Field internal_load_id_nk of type int "
       - name: costid_nk
         tests:
           - not_null
-        description: "Field costid_nk of type int "
+      - name: internal_orderdetail_id_nk
+        tests:
+          - not_null
+      - name: to_bonus_time
+        tests:
+          - not_null
+      - name: to_order_number
+        tests:
+          - not_null
+      - name: to_load_number
+        tests:
+          - not_null
+      - name: ld_load_name
+        tests:
+          - not_null
+      - name: means_of_transport
+        tests:
+          - not_null
+      - name: to_special_order_type
+        tests:
+          - not_null
+      - name: to_act_pickup_date
+        tests:
+          - not_null
+      - name: co_total_costs
+        tests:
+          - not_null
+      - name: co_cost_type
+        tests:
+          - not_null
+      - name: to_weight_unit
+        tests:
+          - not_null
+      - name: to_gross_weight
+        tests:
+          - not_null
+      - name: packagetype
+        tests:
+          - not_null
+      - name: to_consigner_city
+        tests:
+          - not_null
+      - name: to_consigner_country
+        tests:
+          - not_null
+      - name: lane_name
+        tests:
+          - not_null
+      - name: route_distance
+        tests:
+          - not_null
+      - name: to_purchase_order_number
+        tests:
+          - not_null
+      - name: to_consignor_id
+        tests:
+          - not_null
+      - name: totalpalletsactual
+        tests:
+          - not_null
+      - name: totalpalletsplaned
+        tests:
+          - not_null
+      - name: to_status
+        tests:
+          - not_null
+      - name: to_floor_pallets_actuals
+        tests:
+          - not_null
+      - name: to_floor_pallets_planned
+        tests:
+          - not_null
+      - name: pickup_status
+        tests:
+          - not_null
+      - name: to_reference_number
+        tests:
+          - not_null
+      - name: to_delivery_note_number
+        tests:
+          - not_null
+      - name: to_recipient_city
+        tests:
+          - not_null
+      - name: to_recipient_country
+        tests:
+          - not_null
+      - name: to_recipient_id
+        tests:
+          - not_null
+      - name: to_recipient_name
+        tests:
+          - not_null
+      - name: to_recipient_zipcode
+        tests:
+          - not_null
+      - name: to_remarks
+        tests:
+          - not_null
+      - name: transport_start_date
+        tests:
+          - not_null
+      - name: to_consigner_name
+        tests:
+          - not_null
+      - name: to_pallet_places
+        tests:
+          - not_null
+      - name: ld_transport_end_date
+        tests:
+          - not_null
