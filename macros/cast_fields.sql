@@ -1,5 +1,3 @@
-{% macro cast_fields(field_map) %}
-  {% for field, dtype in field_map.items() %}
-    cast({{ field }} as {{ dtype }}) as {{ field }}{% if not loop.last %}, {% endif %}
-  {% endfor %}
+{% macro cast_fields(field, type) %}
+  case when {{ field }} is null then null else cast({{ field }} as {{ type }}) end
 {% endmacro %}
