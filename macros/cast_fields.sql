@@ -1,3 +1,3 @@
 {% macro cast_fields(field, type) %}
-  case when {{ field }} is null then null else cast({{ field }} as {{ type }}) end
+  coalesce(cast({{ field }} as {{ type }}), null)
 {% endmacro %}
