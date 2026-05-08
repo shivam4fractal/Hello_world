@@ -1,3 +1,3 @@
 {% macro cast_fields(field, type) %}
-  coalesce(cast({{ field }} as {{ type }}), null)
+  cast({{ field }} as {{ type }})
 {% endmacro %}
