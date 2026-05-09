@@ -1,26 +1,26 @@
 with ordr as (
-  select * from {{ ref('stg_meu_ds_lops__base_inet_loads') }}
+  select * from {{ ref(stg_meu_ds_lops__base_inet_loads) }}
 ),
 ship_load as (
-  select * from {{ source('meu_ds_lops', 'v_fct_shipment_load') }}
+  select * from {{ source(meu_ds_lops, v_fct_shipment_load) }}
 ),
 ship_cost as (
-  select * from {{ source('meu_ds_lops', 'v_fct_shipment_cost') }}
+  select * from {{ source(meu_ds_lops, v_fct_shipment_cost) }}
 ),
 odr_dt as (
-  select * from {{ source('meu_ds_lops', 'v_fct_shipment_orderdetail') }}
+  select * from {{ source(meu_ds_lops, v_fct_shipment_orderdetail) }}
 ),
 dim_vh as (
-  select * from {{ source('meu_ds_lops', 'v_dim_vehicle') }}
+  select * from {{ source(meu_ds_lops, v_dim_vehicle) }}
 ),
 pick_up_del as (
-  select * from {{ source('meu_ds_lops', 'v_dim_pick_up_delivery') }}
+  select * from {{ source(meu_ds_lops, v_dim_pick_up_delivery) }}
 ),
 dim_consignor as (
-  select * from {{ source('meu_ds_lops', 'v_dim_transportation_coordinator') }}
+  select * from {{ source(meu_ds_lops, v_dim_transportation_coordinator) }}
 ),
 dim_receiver as (
-  select * from {{ source('meu_ds_lops', 'v_dim_transportation_coordinator') }}
+  select * from {{ source(meu_ds_lops, v_dim_transportation_coordinator) }}
 )
 select
   -- internal_order_id_nk: `dev-meu-analyt-lops-svc-28.meu_ds_lops.v_fct_shipment_order` as ordr table is driving table as ordr;  join this table with 
@@ -115,9 +115,9 @@ value from Dim table as to_consigner_city
   -- ld_transport_end_date: take transportenddate column from  v_fct_shipment_load as ld_transport_end_date
   ordr.ld_transport_end_date as ld_transport_end_date
 from ordr
-left join ship_load on ordr.shipment_id = ship_load.shipment_id
-left join ship_cost on ordr.shipment_id = ship_cost.shipment_id
-left join odr_dt on ordr.order_id = odr_dt.order_id
+left join ship_load on ordr.internal_order_id_nk = ship_load.internal_order_id_nk
+left join ship_cost on ordr.internal_order_id_nk = ship_cost.internal_order_id_nk
+left join odr_dt on ordr.internal_order_id_nk = odr_dt.internal_order_id_nk
 left join dim_vh on ordr.vehicle_id = dim_vh.vehicle_id
 left join pick_up_del on ordr.pickup_id = pick_up_del.pickup_id
 left join dim_consignor on ordr.consignor_id = dim_consignor.coordinator_id
