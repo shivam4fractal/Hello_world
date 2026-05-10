@@ -5,16 +5,16 @@ sources:
     schema: public
     tables:
       - name: v_fct_shipment_order
-        description: Shipment order fact table
+        description: Driving table for shipment orders
       - name: v_fct_shipment_load
-        description: Shipment load fact table
+        description: Shipment load details
       - name: v_fct_shipment_cost
-        description: Shipment cost fact table
+        description: Shipment cost details
       - name: v_fct_shipment_orderdetail
-        description: Shipment order detail fact table
+        description: Shipment order detail
       - name: v_dim_vehicle
         description: Vehicle dimension table
       - name: v_dim_pick_up_delivery
-        description: Pickup/delivery dimension table
+        description: Pickup and delivery dimension table
       - name: v_dim_transportation_coordinator
         description: Transportation coordinator dimension table
