@@ -1,125 +1,217 @@
 version: 2
 models:
-  - name: stg_meu_ds_lops__base_inet_loads
-    description: Staging model for BASE_INET_LOADS_DATASET
+  - name: t_dim_pnl_kpi
+    description: Model for t_dim_pnl_kpi
     columns:
-      - name: internal_order_id_nk
+      - name: pnl_kpi_sk
+        description: Surrogate key to the KPI details dimension
         tests:
           - not_null
-      - name: internal_load_id_nk
+      - name: kpi_level_1
+        description: Top-level KPI category (e.g., Revenue, Cost)
+      - name: kpi_level_2
+        description: Second-level KPI subcategory
+      - name: kpi_level_3
+        description: Third-level KPI subcategory
+      - name: kpi_level_4
+        description: Fourth-level KPI subcategory
+      - name: kpi_level_5
+        description: Fifth KPI category (e.g., Revenue, Cost)
+      - name: kpi_level_6
+        description: Sixth-level KPI subcategory
+      - name: kpi_level_7
+        description: Seventh-level KPI subcategory
+      - name: kpi_level_8
+        description: Eight-level KPI subcategory
+      - name: kpi_name
+        description: Display name of the KPI
+      - name: gl_account_nb_nk
+        description: Natural key of the G/L account number (e.g., SAKNR; typically qualified by chart of accounts KTOPL)
+      - name: cluster_code_nk
+        description: Natural key for an analytical cluster/grouping code (business-defined segment)
+      - name: sign_multiplier
+        description: (+1/?1 used to normalize sign conventions for the KPI)
+      - name: additive_flg
+        description: Flag indicating if the KPI is fully additive across dimensions/time
+      - name: kpi_formula
+        description: Calculation expression or rule used to derive the KPI
+      - name: source_system
+        description: hardcoded source system name
+  - name: t_dim_account_cust_pnl
+    description: Model for t_dim_account_cust_pnl
+    columns:
+      - name: account_cust_pnl_sk
+        description: Surrogate key to account dimension covering the combination of GL Account, chart of account and company code
         tests:
           - not_null
-      - name: costid_nk
+      - name: gl_account_nb_nk
+        description: G/L account number as natural key element.
+      - name: company_code_nk
+        description: Company code qualifier for account usage.
+      - name: chart_of_accounts_directory_nk
+        description: Chart of accounts code.
+      - name: pnl_statement_account_type
+        description: P&L statement account type
+      - name: gl_account_type
+        description: Account type from master (e.g., primary cost, revenue, expense).
+      - name: group_account_number
+        description: Group account mapping for consolidation.
+      - name: source_system
+        description: hardcoded source system name
+  - name: t_dim_fi_org
+    description: Model for t_dim_fi_org
+    columns:
+      - name: fi_org_sk
+        description: Surrogate key to profit/cost center dimension.
         tests:
           - not_null
-      - name: internal_orderdetail_id_nk
+      - name: controlling_area
+        description: Controlling Area
+      - name: company_code_nk
+        description: Company Code qualifier for account usage.
+      - name: company_nm
+        description: name of the company
+      - name: cost_center_nk
+        description: Cost center code.
+      - name: profit_center_nk
+        description: Profit center code.
+      - name: entity
+        description: entity name.
+      - name: cluster_code_nk
+        description: Natural key for an analytical cluster/grouping code (business-defined segment)
+      - name: country_code_nk
+        description: Natural key of the country code 
+      - name: country_nm
+        description: Name of the country
+      - name: source_system
+        description: hardcoded source system name
+  - name: t_dim_product_cust_pnl
+    description: Model for t_dim_product_cust_pnl
+    columns:
+      - name: product_sk
+        description: surrogate key from product code
         tests:
           - not_null
-      - name: to_bonus_time
+      - name: product_cd_nk
+        description: hold value like SKU code or SUBBRAND etc.
+      - name: product_type
+        description: help us to identify what kind of product is there in product_cd_nk , possible values are SKU, SUBBRAND etc.
+      - name: is_current
+        description: flag indicator for latest record
+      - name: validity_start_dt
+        description: validity start date
+      - name: validity_end_dt
+        description: validity end date
+      - name: product_type_cd
+        description: product Type
+      - name: product_hierarchy_cd
+        description: Product hierarchy
+      - name: product_group_cd
+        description: product Group
+      - name: glbl_brand_cd
+        description: Brand
+      - name: glbl_brand_nm
+        description: Brand Name
+      - name: glbl_subbrand_nm
+        description: Sub-Brand
+      - name: glbl_variant_nm
+        description: Variant
+      - name: local_brand_cd
+        description: Local brand code
+      - name: local_brand_ds
+        description: Local brand description
+      - name: local_subbrand_cd
+        description: Local subbrand code
+      - name: local_subbrand_ds
+        description: Local subbrand description
+      - name: base_unit_of_measure_cd
+        description: Base Unit of Measure
+      - name: net_contents_qt
+        description: Net contents
+      - name: content_unit_cd
+        description: Content unit
+      - name: net_weight_vl
+        description: Net Weight
+      - name: weight_unit_cd
+        description: Weight Unit
+      - name: volume_vl
+        description: Volume
+      - name: volume_unit_cd
+        description: Volume unit
+      - name: glbl_gtin_nb
+        description: gtin number
+      - name: country_origin_cd
+        description: Country of origin of the material
+      - name: cross_plant_material_status_cd
+        description: Cross-Plant Material Status
+      - name: deletion_client_level_fl
+        description: Flag Material for Deletion at Client Level
+      - name: pricing_ref_material_cd
+        description: Pricing Reference Material
+      - name: general_item_category_group_cd
+        description: General item category group
+      - name: snack_type
+        description: snack type
+      - name: source_system
+        description: hardcoded source system name
+  - name: t_fct_ma_customer_pnl
+    description: Model for t_fct_ma_customer_pnl
+    columns:
+      - name: cal_sk
+        description: Surrogate key to gregorian calendar (1st day of the month).
         tests:
           - not_null
-      - name: to_order_number
+      - name: account_cust_pnl_sk
+        description: Surrogate key to the G/L account dimension.
         tests:
           - not_null
-      - name: to_load_number
+      - name: fi_org_sk
+        description: Surrogate key to profit/cost center dimension.
         tests:
           - not_null
-      - name: ld_load_name
+      - name: customer_sk
+        description: Surrogate key to customer dimension.
         tests:
           - not_null
-      - name: means_of_transport
+      - name: product_sk
+        description: Surrogate key to material/product dimension.
         tests:
           - not_null
-      - name: to_special_order_type
+      - name: vendor_sk
+        description: Surrogate key to vendor dimension.
         tests:
           - not_null
-      - name: to_act_pickup_date
+      - name: product_sold_sk
+        description: ID of the product/material that was sold.
         tests:
           - not_null
-      - name: co_total_costs
+      - name: pnl_kpi_sk
+        description: Surrogate key to KPI details dimension
         tests:
           - not_null
-      - name: co_cost_type
+      - name: units_sk
+        description: Surrogate key to units of measure dimension
         tests:
           - not_null
-      - name: to_weight_unit
+      - name: plant_sk
+        description: Surrogate key to plant dimension
         tests:
           - not_null
-      - name: to_gross_weight
+      - name: customer_salesarea_sk
+        description: Surrogate key to customer salesarea dimension
         tests:
           - not_null
-      - name: packagetype
-        tests:
-          - not_null
-      - name: to_consigner_city
-        tests:
-          - not_null
-      - name: to_consigner_country
-        tests:
-          - not_null
-      - name: lane_name
-        tests:
-          - not_null
-      - name: route_distance
-        tests:
-          - not_null
-      - name: to_purchase_order_number
-        tests:
-          - not_null
-      - name: to_consignor_id
-        tests:
-          - not_null
-      - name: totalpalletsactual
-        tests:
-          - not_null
-      - name: totalpalletsplaned
-        tests:
-          - not_null
-      - name: to_status
-        tests:
-          - not_null
-      - name: to_floor_pallets_actuals
-        tests:
-          - not_null
-      - name: to_floor_pallets_planned
-        tests:
-          - not_null
-      - name: pickup_status
-        tests:
-          - not_null
-      - name: to_reference_number
-        tests:
-          - not_null
-      - name: to_delivery_note_number
-        tests:
-          - not_null
-      - name: to_recipient_city
-        tests:
-          - not_null
-      - name: to_recipient_country
-        tests:
-          - not_null
-      - name: to_recipient_id
-        tests:
-          - not_null
-      - name: to_recipient_name
-        tests:
-          - not_null
-      - name: to_recipient_zipcode
-        tests:
-          - not_null
-      - name: to_remarks
-        tests:
-          - not_null
-      - name: transport_start_date
-        tests:
-          - not_null
-      - name: to_consigner_name
-        tests:
-          - not_null
-      - name: to_pallet_places
-        tests:
-          - not_null
-      - name: ld_transport_end_date
-        tests:
-          - not_null
+      - name: kpi_value_base_uom
+        description: this fields will have all the kpi values for different amounts, quaitities,volume and calculated or base both present in kpi_name
+      - name: kpi_value_cse
+        description: cases
+      - name: kpi_value_lbs
+        description: lbs
+      - name: kpi_value_kgs
+        description: kgs
+      - name: glbl_curr_kpi_value
+        description: this fields will have all the kpi values for different amounts and calculated or base both present in kpi_name in global currency
+      - name: lcl_curr_kpi_value
+        description: this fields will have all the kpi values for different amounts and calculated or base both present in kpi_name in local currency
+      - name: txn_curr_kpi_value
+        description: this fields will have all the kpi values for different amounts and calculated or base both present in kpi_name in transaction currency

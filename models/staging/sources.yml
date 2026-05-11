@@ -1,20 +1,20 @@
 version: 2
 sources:
-  - name: meu_ds_lops
+  - name: amer_h_saps4_am
     database: RAW
     schema: public
     tables:
-      - name: v_fct_shipment_order
-        description: Driving table for shipment orders
-      - name: v_fct_shipment_load
-        description: Shipment load details
-      - name: v_fct_shipment_cost
-        description: Shipment cost details
-      - name: v_fct_shipment_orderdetail
-        description: Shipment order detail
-      - name: v_dim_vehicle
-        description: Vehicle dimension table
-      - name: v_dim_pick_up_delivery
-        description: Pickup and delivery dimension table
-      - name: v_dim_transportation_coordinator
-        description: Transportation coordinator dimension table
+      - name: t_acdoca
+      - name: t_ska1
+  - name: amer_h_manual_mst
+    database: RAW
+    schema: public
+    tables:
+      - name: t_nala_cstmr_pnl_kpi_mapping
+  - name: amer_dc_md
+    database: RAW
+    schema: public
+    tables:
+      - name: t_dim_material
+      - name: t_dim_company_code
+      - name: t_dim_country
