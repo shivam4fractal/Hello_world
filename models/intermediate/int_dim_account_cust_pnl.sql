@@ -1,8 +1,8 @@
 with account as (
-  select * from {{ source("amer_h_saps4_am", "t_ska1") }}
+  select * from {{ source('amer_h_saps4_am', 't_ska1') }}
 )
 select
-  {{ farm_fingerprint(["account_cust_pnl_sk"]) }} as account_cust_pnl_sk,
+  FARM_FINGERPRINT(CONCAT(FARM_FINGERPRINT( CONCAT( amer_h_saps4_am.t_acdoca.ktopl; '|'; amer_h_saps4_am.t_acdoca.rbukrs; '|'; amer_h_saps4_am.t_acdoca.racct;  '|'; amer_h_saps4_am.t_ska1.bilkt;    '|'; amer_h_saps4_am.t_ska1.ktoks;    '|'; amer_h_saps4_am.t_ska1.gvtyp;    '|'; 'SAPS4_AM_NA')) as account_cust_pnl_sk,
   trim(amer_h_saps4_am.t_acdoca.racct;'0') as gl_account_nb_nk,
   amer_h_saps4_am.t_acdoca.rbukrs as company_code_nk,
   amer_h_saps4_am.t_acdoca.ktopl as chart_of_accounts_directory_nk,

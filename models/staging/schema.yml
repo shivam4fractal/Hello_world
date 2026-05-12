@@ -1,57 +1,7 @@
 version: 2
 models:
-  - name: t_dim_fi_org
-    description: Model for t_dim_fi_org
-    columns:
-      - name: fi_org_sk
-        description: Surrogate key to profit/cost center dimension.
-        tests:
-          - not_null
-      - name: controlling_area
-        description: Controlling Area
-      - name: company_code_nk
-        description: Company Code qualifier for account usage.
-      - name: company_nm
-        description: name of the company
-      - name: cost_center_nk
-        description: Cost center code.
-      - name: profit_center_nk
-        description: Profit center code.
-      - name: entity
-        description: entity name.
-      - name: cluster_code_nk
-        description: Natural key for an analytical cluster/grouping code (business-defined segment)
-      - name: country_code_nk
-        description: Natural key of the country code 
-      - name: country_nm
-        description: Name of the country
-      - name: source_system
-        description: hardcoded source system name
-
-  - name: t_dim_account_cust_pnl
-    description: Model for t_dim_account_cust_pnl
-    columns:
-      - name: account_cust_pnl_sk
-        description: Surrogate key to account dimension covering the combination of GL Account, chart of account and company code
-        tests:
-          - not_null
-      - name: gl_account_nb_nk
-        description: G/L account number as natural key element.
-      - name: company_code_nk
-        description: Company code qualifier for account usage.
-      - name: chart_of_accounts_directory_nk
-        description: Chart of accounts code.
-      - name: pnl_statement_account_type
-        description: P&L statement account type
-      - name: gl_account_type
-        description: Account type from master (e.g., primary cost, revenue, expense).
-      - name: group_account_number
-        description: Group account mapping for consolidation.
-      - name: source_system
-        description: hardcoded source system name
-
   - name: t_dim_pnl_kpi
-    description: Model for t_dim_pnl_kpi
+    description: Harmonized model for t_dim_pnl_kpi
     columns:
       - name: pnl_kpi_sk
         description: Surrogate key to the KPI details dimension
@@ -88,70 +38,58 @@ models:
       - name: source_system
         description: hardcoded source system name
 
-  - name: t_fct_ma_customer_pnl
-    description: Model for t_fct_ma_customer_pnl
+  - name: t_dim_account_cust_pnl
+    description: Harmonized model for t_dim_account_cust_pnl
     columns:
-      - name: cal_sk
-        description: Surrogate key to gregorian calendar (1st day of the month).
-        tests:
-          - not_null
       - name: account_cust_pnl_sk
-        description: Surrogate key to the G/L account dimension.
+        description: Surrogate key to account dimension covering the combination of GL Account, chart of account and company code
         tests:
           - not_null
+      - name: gl_account_nb_nk
+        description: G/L account number as natural key element.
+      - name: company_code_nk
+        description: Company code qualifier for account usage.
+      - name: chart_of_accounts_directory_nk
+        description: Chart of accounts code.
+      - name: pnl_statement_account_type
+        description: P&L statement account type
+      - name: gl_account_type
+        description: Account type from master (e.g., primary cost, revenue, expense).
+      - name: group_account_number
+        description: Group account mapping for consolidation.
+      - name: source_system
+        description: hardcoded source system name
+
+  - name: t_dim_fi_org
+    description: Harmonized model for t_dim_fi_org
+    columns:
       - name: fi_org_sk
         description: Surrogate key to profit/cost center dimension.
         tests:
           - not_null
-      - name: customer_sk
-        description: Surrogate key to customer dimension.
-        tests:
-          - not_null
-      - name: product_sk
-        description: Surrogate key to material/product dimension.
-        tests:
-          - not_null
-      - name: vendor_sk
-        description: Surrogate key to vendor dimension.
-        tests:
-          - not_null
-      - name: product_sold_sk
-        description: ID of the product/material that was sold.
-        tests:
-          - not_null
-      - name: pnl_kpi_sk
-        description: Surrogate key to KPI details dimension
-        tests:
-          - not_null
-      - name: units_sk
-        description: Surrogate key to units of measure dimension
-        tests:
-          - not_null
-      - name: plant_sk
-        description: Surrogate key to plant dimension
-        tests:
-          - not_null
-      - name: customer_salesarea_sk
-        description: Surrogate key to customer salesarea dimension
-        tests:
-          - not_null
-      - name: kpi_value_base_uom
-        description: this fields will have all the kpi values for different amounts, quaitities,volume and calculated or base both present in kpi_name
-      - name: kpi_value_cse
-        description: cases
-      - name: kpi_value_lbs
-        description: lbs
-      - name: kpi_value_kgs
-        description: kgs
-      - name: glbl_curr_kpi_value
-        description: this fields will have all the kpi values for different amounts and calculated or base both present in kpi_name in global currency
-      - name: lcl_curr_kpi_value
-        description: this fields will have all the kpi values for different amounts and calculated or base both present in kpi_name in local currency
-      - name: txn_curr_kpi_value
-        description: this fields will have all the kpi values for different amounts and calculated or base both present in kpi_name in transaction currency
+      - name: controlling_area
+        description: Controlling Area
+      - name: company_code_nk
+        description: Company Code qualifier for account usage.
+      - name: company_nm
+        description: name of the company
+      - name: cost_center_nk
+        description: Cost center code.
+      - name: profit_center_nk
+        description: Profit center code.
+      - name: entity
+        description: entity name.
+      - name: cluster_code_nk
+        description: Natural key for an analytical cluster/grouping code (business-defined segment)
+      - name: country_code_nk
+        description: Natural key of the country code 
+      - name: country_nm
+        description: Name of the country
+      - name: source_system
+        description: hardcoded source system name
 
   - name: t_dim_product_cust_pnl
-    description: Model for t_dim_product_cust_pnl
+    description: Harmonized model for t_dim_product_cust_pnl
     columns:
       - name: product_sk
         description: surrogate key from product code
@@ -219,3 +157,65 @@ models:
         description: snack type
       - name: source_system
         description: hardcoded source system name
+
+  - name: t_fct_ma_customer_pnl
+    description: Harmonized model for t_fct_ma_customer_pnl
+    columns:
+      - name: cal_sk
+        description: Surrogate key to gregorian calendar (1st day of the month).
+        tests:
+          - not_null
+      - name: account_cust_pnl_sk
+        description: Surrogate key to the G/L account dimension.
+        tests:
+          - not_null
+      - name: fi_org_sk
+        description: Surrogate key to profit/cost center dimension.
+        tests:
+          - not_null
+      - name: customer_sk
+        description: Surrogate key to customer dimension.
+        tests:
+          - not_null
+      - name: product_sk
+        description: Surrogate key to material/product dimension.
+        tests:
+          - not_null
+      - name: vendor_sk
+        description: Surrogate key to vendor dimension.
+        tests:
+          - not_null
+      - name: product_sold_sk
+        description: ID of the product/material that was sold.
+        tests:
+          - not_null
+      - name: pnl_kpi_sk
+        description: Surrogate key to KPI details dimension
+        tests:
+          - not_null
+      - name: units_sk
+        description: Surrogate key to units of measure dimension
+        tests:
+          - not_null
+      - name: plant_sk
+        description: Surrogate key to plant dimension
+        tests:
+          - not_null
+      - name: customer_salesarea_sk
+        description: Surrogate key to customer salesarea dimension
+        tests:
+          - not_null
+      - name: kpi_value_base_uom
+        description: this fields will have all the kpi values for different amounts, quaitities,volume and calculated or base both present in kpi_name
+      - name: kpi_value_cse
+        description: cases
+      - name: kpi_value_lbs
+        description: lbs
+      - name: kpi_value_kgs
+        description: kgs
+      - name: glbl_curr_kpi_value
+        description: this fields will have all the kpi values for different amounts and calculated or base both present in kpi_name in global currency
+      - name: lcl_curr_kpi_value
+        description: this fields will have all the kpi values for different amounts and calculated or base both present in kpi_name in local currency
+      - name: txn_curr_kpi_value
+        description: this fields will have all the kpi values for different amounts and calculated or base both present in kpi_name in transaction currency
