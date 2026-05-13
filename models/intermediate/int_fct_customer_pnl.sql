@@ -1,25 +1,16 @@
 with acdoca as (
-  select * from {{ ref('stg_amer_nafpa__acdoca') }}
+  select * from {{ ref("stg_amer_nafpa__acdoca") }}
 )
 select
   FARM_FINGERPRINT(CONCAT(concat(To_date(extract(year from cast(amer_h_saps4_am.t_acdoca.budat as date));extract(month from cast(amer_h_saps4_am.t_acdoca.budat as date));'01')))) as cal_sk,
   FARM_FINGERPRINT(CONCAT(FARM_FINGERPRINT( CONCAT( amer_h_saps4_am.t_acdoca.ktopl; '|'; amer_h_saps4_am.t_acdoca.rbukrs; '|'; amer_h_saps4_am.t_acdoca.racct;  '|'; amer_h_saps4_am.t_ska1.bilkt;    '|'; amer_h_saps4_am.t_ska1.ktoks;    '|'; amer_h_saps4_am.t_ska1.gvtyp;    '|'; 'SAPS4_AM_NA')) as account_cust_pnl_sk,
   FARM_FINGERPRINT(CONCAT(farm_fingerprint(CONCAT(amer_h_saps4_am.t_acdoca.prctr; '|';  amer_h_saps4_am.t_acdoca.rcntr;'|'; amer_h_saps4_am.t_acdoca.rbukrs ; '|'; amer_dc_md.t_dim_country.country_cd_nk ; '|' ; 'SAPS4_AM_NA')))) as fi_org_sk,
   FARM_FINGERPRINT(CONCAT(farm_fingerprint(amer_h_saps4_am.t_acdoca.kunnr))) as customer_sk,
-  FARM_FINGERPRINT(CONCAT(farm_fingerprint(amer_h_saps4_am.t_acdoca.matnr)
-union
-farm_fingerprint(amer_h_saps4_am.t_acdoca.subbrand))) as product_sk,
+  FARM_FINGERPRINT(CONCAT(farm_fingerprint(amer_h_saps4_am.t_acdoca.matnr)unionfarm_fingerprint(amer_h_saps4_am.t_acdoca.subbrand))) as product_sk,
   FARM_FINGERPRINT(CONCAT(farm_fingerprint(amer_h_saps4_am.t_acdoca.lifnr))) as vendor_sk,
   FARM_FINGERPRINT(CONCAT(farm_fingerprint(amer_h_saps4_am.t_acdoca.matnr_copa))) as product_sold_sk,
-  FARM_FINGERPRINT(CONCAT(farm_fingerprint(concat(amer_h_manual_mst.t_nala_cstmr_pnl_kpi_mapping.kpi_name;amer_h_manual_mst.t_nala_cstmr_pnl_kpi_mapping.cluster_code_nk; amer_h_manual_mst.t_nala_cstmr_pnl_kpi_mapping.gl_account;'SAPS4_AM_NA')
-)) as pnl_kpi_sk,
-  FARM_FINGERPRINT(CONCAT(farm_fingerprint(concat(
-amer_h_saps4_am.t_acdoca.rhcur;
-amer_h_saps4_am.t_acdoca.rkcur;
-amer_h_saps4_am.t_acdoca.rwcur;
-amer_h_saps4_am.t_acdoca.runit;
-'SAPS4_AM_NA'))
-)) as units_sk,
+  FARM_FINGERPRINT(CONCAT(farm_fingerprint(concat(amer_h_manual_mst.t_nala_cstmr_pnl_kpi_mapping.kpi_name;amer_h_manual_mst.t_nala_cstmr_pnl_kpi_mapping.cluster_code_nk; amer_h_manual_mst.t_nala_cstmr_pnl_kpi_mapping.gl_account;'SAPS4_AM_NA'))) as pnl_kpi_sk,
+  FARM_FINGERPRINT(CONCAT(farm_fingerprint(concat(amer_h_saps4_am.t_acdoca.rhcur;amer_h_saps4_am.t_acdoca.rkcur;amer_h_saps4_am.t_acdoca.rwcur;amer_h_saps4_am.t_acdoca.runit;'SAPS4_AM_NA')))) as units_sk,
   FARM_FINGERPRINT(CONCAT(farm_fingerprint(amer_h_saps4_am.t_acdoca.werks))) as plant_sk,
   FARM_FINGERPRINT(CONCAT(farm_fingerprint(concat(amer_h_saps4_am.t_acdoca.matnr; amer_h_saps4_am.t_acdoca.vkorg;amer_h_saps4_am.t_acdoca.vtweg)))) as customer_salesarea_sk,
   amer_h_saps4_am.t_acdoca.msl as kpi_value_base_uom,

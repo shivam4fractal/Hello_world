@@ -1,5 +1,5 @@
 with source as (
-  select * from {{ source('amer_h_saps4_am', 't_acdoca') }}
+  select * from {{ source("amer_h_saps4_am", "t_acdoca") }}
 )
 select
   cast(cal_sk as string) as cal_sk,

@@ -1,5 +1,5 @@
 with material as (
-  select * from {{ source('amer_dc_md', 't_dim_material') }}
+  select * from {{ source("amer_dc_md", "t_dim_material") }}
 )
 select
   FARM_FINGERPRINT(CONCAT(Farm_fingerprint(amer_dc_md.t_dim_material.material_cd))) as product_sk,

@@ -1,17 +1,17 @@
 with fct as (
-  select * from {{ ref('int_fct_customer_pnl') }}
+  select * from {{ ref("int_fct_customer_pnl") }}
 ),
 product as (
-  select * from {{ ref('int_dim_product_cust_pnl') }}
+  select * from {{ ref("int_dim_product_cust_pnl") }}
 ),
 kpi as (
-  select * from {{ ref('int_dim_pnl_kpi') }}
+  select * from {{ ref("int_dim_pnl_kpi") }}
 ),
 fi_org as (
-  select * from {{ ref('int_dim_fi_org') }}
+  select * from {{ ref("int_dim_fi_org") }}
 ),
 account as (
-  select * from {{ ref('int_dim_account_cust_pnl') }}
+  select * from {{ ref("int_dim_account_cust_pnl") }}
 )
 select
   fct.*,
