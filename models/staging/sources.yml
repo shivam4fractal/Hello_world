@@ -5,16 +5,22 @@ sources:
     schema: public
     tables:
       - name: t_acdoca
+        description: Main fact/journal entries
       - name: t_ska1
+        description: GL account master
   - name: amer_h_manual_mst
     database: RAW
     schema: public
     tables:
       - name: t_nala_cstmr_pnl_kpi_mapping
+        description: KPI mapping
   - name: amer_dc_md
     database: RAW
     schema: public
     tables:
       - name: t_dim_material
+        description: Material master
       - name: t_dim_company_code
+        description: Company code master
       - name: t_dim_country
+        description: Country master
