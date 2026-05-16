@@ -1,4 +1,4 @@
-with material as (
+with mat as (
   select * from {{ source('amer_dc_md', 't_dim_material') }}
 )
 select
@@ -37,4 +37,4 @@ select subbrand_nm where acdoca.ZZ1_GPHLVL5_MSE= material.prod_hier_l9_cd as pro
   "select characteristic_value_vl from amer_dc_md.t_dim_material_classification
 where class_name_nm = """"Z_MATERIAL_GENERAL"""" and characteristic_name_nm = 'Snack Type'" as snack_type,
   SAPS4_AM_NA as source_system
-from material
+from mat
