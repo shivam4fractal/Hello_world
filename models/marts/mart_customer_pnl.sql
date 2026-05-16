@@ -1,26 +1,26 @@
 with fact as (
   select * from {{ ref('int_fct_customer_pnl') }}
 ),
-     prod as (
+product as (
   select * from {{ ref('int_dim_product_cust_pnl') }}
 ),
-     kpi as (
+kpi as (
   select * from {{ ref('int_dim_pnl_kpi') }}
 ),
-     org as (
+org as (
   select * from {{ ref('int_dim_fi_org') }}
 ),
-     acct as (
+account as (
   select * from {{ ref('int_dim_account_cust_pnl') }}
 )
 select
   fact.*,
-  prod.*,
+  product.*,
   kpi.*,
   org.*,
-  acct.*
+  account.*
 from fact
-  left join prod on ...
-  left join kpi on ...
-  left join org on ...
-  left join acct on ...
+left join product on fact.product_id = product.product_id
+left join kpi on fact.kpi_id = kpi.kpi_id
+left join org on fact.org_id = org.org_id
+left join account on fact.account_id = account.account_id
