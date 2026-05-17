@@ -20,4 +20,23 @@ with source as (
     txn_curr_kpi_value as txn_curr_kpi_value
   from {{ source('amer_h_saps4_am', 't_acdoca') }}
 )
-select * from source
+select
+  cal_sk,
+  account_cust_pnl_sk,
+  fi_org_sk,
+  customer_sk,
+  product_sk,
+  vendor_sk,
+  product_sold_sk,
+  pnl_kpi_sk,
+  units_sk,
+  plant_sk,
+  customer_salesarea_sk,
+  kpi_value_base_uom,
+  kpi_value_cse,
+  kpi_value_lbs,
+  kpi_value_kgs,
+  glbl_curr_kpi_value,
+  lcl_curr_kpi_value,
+  txn_curr_kpi_value
+from source
