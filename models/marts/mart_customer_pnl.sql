@@ -8,4 +8,4 @@ select
   fact.*,
   product.*
 from fact
-left join product on fact.product_id = product.product_id
+left join product on ...
