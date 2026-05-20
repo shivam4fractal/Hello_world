@@ -1,4 +1,4 @@
-with fact as (
+with fct as (
   select * from {{ ref('int_fct_customer_pnl') }}
 ),
 product as (
@@ -14,13 +14,13 @@ account as (
   select * from {{ ref('int_dim_account_cust_pnl') }}
 )
 select
-  fact.*,
+  fct.*,
   product.*,
   kpi.*,
   fi_org.*,
   account.*
-from fact
-  left join product on fact.product_id = product.product_id
-  left join kpi on fact.kpi_id = kpi.kpi_id
-  left join fi_org on fact.company_code = fi_org.company_code
-  left join account on fact.account_id = account.account_id
+from fct
+  left join product on fct.product_key = product.product_key
+  left join kpi on fct.kpi_key = kpi.kpi_key
+  left join fi_org on fct.fi_org_key = fi_org.fi_org_key
+  left join account on fct.account_key = account.account_key
