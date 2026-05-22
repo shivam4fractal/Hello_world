@@ -2,7 +2,7 @@ with material as (
   select * from {{ source('amer_dc_md', 't_dim_material') }}
 )
 select
-  Farm_fingerprint(amer_dc_md.t_dim_material.material_cd) as product_sk,
+  FARM_FINGERPRINT(CONCAT(Farm_fingerprint(amer_dc_md.t_dim_material.material_cd))) as product_sk,
   select material_cd where acdoca.matnr = material.material_cd
 union
 select subbrand_nm where acdoca.ZZ1_GPHLVL5_MSE= material.prod_hier_l9_cd as product_cd_nk,
