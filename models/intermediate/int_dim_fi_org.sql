@@ -1,5 +1,5 @@
 with company as (
-  select * from {{ source('amer_dc_md', 't_dim_company_code') }}
+  select * from {{ source("amer_dc_md", "t_dim_company_code") }}
 )
 select
   FARM_FINGERPRINT(CONCAT(farm_fingerprint(CONCAT(amer_h_saps4_am.t_acdoca.prctr; '|';  amer_h_saps4_am.t_acdoca.rcntr;'|'; amer_h_saps4_am.t_acdoca.rbukrs ; '|'; amer_dc_md.t_dim_country.country_cd_nk ; '|' ; 'SAPS4_AM_NA')))) as fi_org_sk,

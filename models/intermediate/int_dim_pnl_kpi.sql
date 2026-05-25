@@ -1,5 +1,5 @@
 with kpi as (
-  select * from {{ source('amer_h_manual_mst', 't_nala_cstmr_pnl_kpi_mapping') }}
+  select * from {{ source("amer_h_manual_mst", "t_nala_cstmr_pnl_kpi_mapping") }}
 )
 select
   FARM_FINGERPRINT(CONCAT(farm_fingerprint(concat(amer_h_manual_mst.t_nala_cstmr_pnl_kpi_mapping.kpi_name;amer_h_manual_mst.t_nala_cstmr_pnl_kpi_mapping.cluster_code_nk; amer_h_manual_mst.t_nala_cstmr_pnl_kpi_mapping.gl_account;'SAPS4_AM_NA'))) as pnl_kpi_sk,

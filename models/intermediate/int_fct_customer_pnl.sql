@@ -1,5 +1,5 @@
 with acdoca as (
-  select * from {{ ref('stg_amer_nafpa__acdoca') }}
+  select * from {{ ref("stg_amer_nafpa__acdoca") }}
 )
 select
   FARM_FINGERPRINT(CONCAT(concat(To_date(extract(year from cast(amer_h_saps4_am.t_acdoca.budat as date));extract(month from cast(amer_h_saps4_am.t_acdoca.budat as date));'01')))) as cal_sk,
