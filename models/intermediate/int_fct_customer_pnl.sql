@@ -1,17 +1,5 @@
 with acdoca as (
-  select * from {{ ref("stg_amer_nafpa__acdoca") }}
-),
-kpi_map as (
-  select * from {{ source("amer_h_manual_mst", "t_nala_cstmr_pnl_kpi_mapping") }}
-),
-material as (
-  select * from {{ source("amer_dc_md", "t_dim_material") }}
-),
-company as (
-  select * from {{ source("amer_dc_md", "t_dim_company_code") }}
-),
-country as (
-  select * from {{ source("amer_dc_md", "t_dim_country") }}
+  select * from {{ ref('stg_amer_nafpa__acdoca') }}
 )
 select
   FARM_FINGERPRINT(CONCAT(concat(To_date(extract(year from cast(amer_h_saps4_am.t_acdoca.budat as date));extract(month from cast(amer_h_saps4_am.t_acdoca.budat as date));'01')))) as cal_sk,
